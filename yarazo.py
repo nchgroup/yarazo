@@ -41,19 +41,19 @@ def check_file(file_path, rule_path):
 def main():
     global executor
     if len(sys.argv) < 2:
-        print("Error: Please provide an executable file as an argument.")
+        print("[-] Error: Please provide an executable file as an argument.")
         sys.exit(1)
 
     executable = sys.argv[1]
     if not os.path.isfile(executable):
-        print(f"Error: {executable} is not a valid file.")
+        print(f"[-] Error: {executable} is not a valid file.")
         sys.exit(1)
 
     rules_dir = Path.cwd() / "yara-rules"
 
     yara_files = list(rules_dir.glob("**/*.yar"))
     if not yara_files:
-        print("[-] Error: No YARA rules found in yara-rules directory.")
+        print("[-] Error: No YARA rules found in yara-rules directory. Please run 'bash install.sh'")
         sys.exit(1)
 
     with ThreadPoolExecutor(max_workers=4) as executor_instance:
