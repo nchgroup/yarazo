@@ -30,9 +30,11 @@ def check_file(file_path, rule_path):
                 f"+ {rule_path.name} --> {', '.join(str(match) for match in matches)}"
             )
         return None
-    except yara.Error:
+    except yara.Error as e:
+        # print(f"Error compiling or scanning with {rule_path}: {str(e)}")
         return None
-    except Exception:
+    except Exception as e:
+        # print(f"Unexpected error with {rule_path}: {str(e)}")
         return None
 
 
@@ -51,12 +53,8 @@ def main():
 
     yara_files = list(rules_dir.glob("**/*.yar"))
     if not yara_files:
-        print(
-            "[-] Error: No YARA rules found in yara-rules directory. Please run 'bash install.sh'"
-        )
+        print("[-] Error: No YARA rules found in yara-rules directory. Please run 'bash install.sh'")
         sys.exit(1)
-
-    found_match = False  # Bandera para detectar si se imprime algo
 
     with ThreadPoolExecutor(max_workers=4) as executor_instance:
         executor = executor_instance
@@ -69,9 +67,6 @@ def main():
             result = future.result()
             if result:
                 print(result)
-                found_match = True  # Se imprimió al menos una coincidencia
-
-    sys.exit(1 if found_match else 0)  # Estado de salida según si hubo impresión
 
 
 if __name__ == "__main__":
