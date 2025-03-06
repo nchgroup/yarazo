@@ -11,6 +11,7 @@ $ python3 yarazo.py <binary>
 ## Install
 
 ```bash
+sudo apt install git -y
 bash install.sh
 python3 -m venv .venv
 source .venv/bin/activate
