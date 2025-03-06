@@ -8,6 +8,12 @@ Script for testing backdoors with yara rules
 $ python3 yarazo.py <binary>
 ```
 
+## Update Yara rules
+
+```bash
+bash update.sh
+```
+
 ## Install
 
 ```bash
