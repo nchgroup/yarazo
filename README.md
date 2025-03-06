@@ -20,4 +20,4 @@ pip install -r requirements.txt
 
 ## Testing
 
-test.bin is a metasploit shellcode windows/x64/shell_reverse_tcp
+shell_reverse_tcp.bin is a metasploit shellcode windows/x64/shell_reverse_tcp
